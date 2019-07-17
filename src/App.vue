@@ -42,6 +42,23 @@
 		<div v-for="(item,key,index) of people" :key="index">
 			value = {{item}}---key = {{key}}--index={{index}}
 		</div>
+		<table>
+			<tbody>
+				<!-- <row></row>
+				<row></row>
+				<row></row> -->
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+				<tr is="row"></tr>
+			</tbody>
+		</table>
+
+		<div ref="hello" @click="handleRefClick">
+			hello world ref 引用
+		</div>
+		<!-- <check-props :content='1'></check-props> -->
+		<check-props content='参数正确' name='必传参数' :age='20'></check-props>
+		<native-click @click.native='handleNativeClick'></native-click>
 	</div>
 
 </template>
@@ -53,16 +70,49 @@
 		template: '<h3 @click="removeClick">Hello 我是局部组件 click 向父组件传递信息</h3>',
 		methods: {
 			removeClick() {
-				this.$emit('childRemove', '我被删除了')
+				this.$emit('childRemove', '向父组件发射事件 我被删除了')
 			}
 		}
+	}
+
+	const row = {
+		template: '<tr><td>this is a row</td></tr>'
+	}
+
+	const CheckProps = {
+		props: {
+			content: [String, Number],
+			name: {
+				type: String,
+				required: true
+			},
+			city: {
+				type: String,
+				required: false,
+				default: 'default value'
+			},
+			age: {
+				type: Number,
+				validator: (value) => {
+					return value >= 20
+				}
+			}
+		},
+		template: '<div style="color:green"> 父组件向子组件传递属性进行校验: {{content}} 必传参数:{{name}} 默认参数:{{city}} age: 校验参数取值范围</div>'
+	}
+
+	const NativeClick = {
+		template: '<div style="color:blue;text-align:center">点击直接触发原生事件</div>'
 	}
 
 	export default {
 		name: 'app',
 		components: {
 			HelloWorld,
-			TodoItem
+			TodoItem,
+			row,
+			CheckProps,
+			NativeClick
 		},
 		data() {
 			return {
@@ -114,6 +164,12 @@
 			},
 			handleChangeColorStyle() {
 				this.styleObj.color = this.styleObj.color === 'blue' ? 'green' : 'blue'
+			},
+			handleRefClick() {
+				console.log(this.$refs.hello.innerHTML);
+			},
+			handleNativeClick() {
+				alert('点击组件直接触发父组件原生方法')
 			}
 
 		},
