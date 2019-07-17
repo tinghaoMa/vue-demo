@@ -37,7 +37,7 @@
 		template:'<h3 @click="removeClick">Hello 我是局部组件 click 向父组件传递信息</h3>',
 		methods:{
 			removeClick(){
-				this.$emit('childRemove')
+				this.$emit('childRemove','我被删除了')
 			}
 		}
 	}
@@ -61,12 +61,18 @@
 			handleClick(event) {
 				alert('handleClick param = ' + event)
 			},
-			childRemove(){
-				console.log('子组件向父组件传递信息  childRemove');
+			childRemove(msg){
+				console.log('子组件向父组件传递信息  childRemove '+msg);
 			}
 		},
 		mounted() {
 			console.log('App.vue mouted');
+		},
+		beforeUpdate(){
+			console.log('beforeUpdate');
+		},
+		updated(){
+			console.log('updated');
 		}
 	}
 </script>

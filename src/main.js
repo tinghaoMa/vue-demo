@@ -5,7 +5,7 @@ Vue.config.productionTip = false
 
 // 定义一个名为 button-counter 的新组件
 Vue.component('ButtonCounter', {
-	props:['content'],
+	props: ['content'],
 	data: function() {
 		return {
 			count: 0,
@@ -15,7 +15,36 @@ Vue.component('ButtonCounter', {
 })
 
 
-new Vue({
+const vm = new Vue({
 	el: '#app',
-	render: h => h(App)
+	render: h => h(App),
+	beforeCreate() {
+		console.log('beforeCreate');
+	},
+	created() {
+		console.log('created');
+	},
+	beforeMount(){
+		console.log(this.$el);
+		console.log('beforeMount');
+	},
+	mounted(){
+		console.log(this.$el);
+		console.log('mounted');
+	},
+	beforeDestroy(){
+		console.log('beforeDestory');
+	},
+	destroyed(){
+		console.log('destroyed');
+	},
+	beforeUpdate(){
+		console.log('beforeUpdate');
+	},
+	updated(){
+		console.log('updated');
+	}
+	
 })
+
+window.vm=vm
