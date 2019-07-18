@@ -1,5 +1,6 @@
 import Vue from 'vue/dist/vue.js'
 import App from './App.vue'
+import router from './router'
 import animated from './animate.css' // npm install animate.css --save安装，在引入
  
 
@@ -23,6 +24,7 @@ Vue.component('ButtonCounter', {
 
 const vm = new Vue({
 	el: '#app',
+	router,
 	render: h => h(App),
 	beforeCreate() {
 		console.log('beforeCreate');
