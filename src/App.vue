@@ -1,6 +1,7 @@
 <template>
 	<div id="app">
 		<!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+		<css-demo></css-demo>
 		<dynamic-component></dynamic-component>
 		<slot-demo></slot-demo>
 		<HelloWorld msg="Welcome to Your Vue.js App" />
@@ -75,6 +76,9 @@
 	import HelloWorld from './components/HelloWorld.vue'
 	import SlotDemo from './components/SlotDemo.vue'
 	import DynamicComponent from './components/DynamicComponent.vue'
+	import CssDemo from './components/CssDemo.vue'
+	
+	
 	
 	const TodoItem = {
 		props: ['age'],
@@ -160,7 +164,8 @@
 			ChildMsg,
 			child,
 			SlotDemo,
-			DynamicComponent
+			DynamicComponent,
+			CssDemo
 		},
 		data() {
 			return {
