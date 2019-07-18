@@ -61,6 +61,10 @@
 		<native-click @click.native='handleNativeClick'></native-click>
 		<child-msg content='hello'></child-msg>
 		<child-msg content='world'></child-msg>
+		<child>
+			<p slot="header">Slot 插槽从父组件传递Dom到子组件 HEADER</p>
+			<p slot="footer">Slot 插槽从父组件传递Dom到子组件 FOOTER</p>
+		</child>
 	</div>
 
 </template>
@@ -123,11 +127,21 @@
 			}
 		},
 		mounted() {
-			this.bus.$on('change', (value)=> {
-				console.log('bus change '+value)
+			this.bus.$on('change', (value) => {
+				console.log('bus change ' + value)
 				this.selfContent = value
 			})
 		}
+	}
+
+	const child = {
+		template: `<div>,
+					<slot name='header'>
+						<h1>默认的HEADER</h1>
+					</slot>
+					<p>hello slot 内容</p>
+					<slot name='footer'></slot>
+				   </div>`
 	}
 
 	export default {
@@ -138,7 +152,8 @@
 			row,
 			CheckProps,
 			NativeClick,
-			ChildMsg
+			ChildMsg,
+			child
 		},
 		data() {
 			return {
