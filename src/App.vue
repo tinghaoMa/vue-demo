@@ -1,6 +1,8 @@
 <template>
 	<div id="app">
 		<!-- <img alt="Vue logo" src="./assets/logo.png"> -->
+		<dynamic-component></dynamic-component>
+		<slot-demo></slot-demo>
 		<HelloWorld msg="Welcome to Your Vue.js App" />
 		<h1 v-if="awesome">Vue is awesome!</h1>
 		<h1 v-else @click="handleClick('hi')">Oh no 😢</h1>
@@ -71,6 +73,9 @@
 
 <script>
 	import HelloWorld from './components/HelloWorld.vue'
+	import SlotDemo from './components/SlotDemo.vue'
+	import DynamicComponent from './components/DynamicComponent.vue'
+	
 	const TodoItem = {
 		props: ['age'],
 		template: '<h3 @click="removeClick">Hello 我是局部组件 click 向父组件传递信息</h3>',
@@ -153,7 +158,9 @@
 			CheckProps,
 			NativeClick,
 			ChildMsg,
-			child
+			child,
+			SlotDemo,
+			DynamicComponent
 		},
 		data() {
 			return {
