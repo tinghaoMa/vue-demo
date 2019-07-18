@@ -3,6 +3,8 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
+Vue.prototype.bus=new Vue()
+
 // 定义一个名为 button-counter 的新组件
 Vue.component('ButtonCounter', {
 	props: ['content'],

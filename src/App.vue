@@ -59,6 +59,8 @@
 		<!-- <check-props :content='1'></check-props> -->
 		<check-props content='参数正确' name='必传参数' :age='20'></check-props>
 		<native-click @click.native='handleNativeClick'></native-click>
+		<child-msg content='hello'></child-msg>
+		<child-msg content='world'></child-msg>
 	</div>
 
 </template>
@@ -105,6 +107,29 @@
 		template: '<div style="color:blue;text-align:center">点击直接触发原生事件</div>'
 	}
 
+	const ChildMsg = {
+		props: {
+			content: String
+		},
+		data: function() {
+			return {
+				selfContent: this.content
+			}
+		},
+		template: '<div style="color:red;text-align:center" @click="handleChildMsg">组件间传递消息Vue Bus {{selfContent}}</div>',
+		methods: {
+			handleChildMsg() {
+				this.bus.$emit('change', this.selfContent)
+			}
+		},
+		mounted() {
+			this.bus.$on('change', (value)=> {
+				console.log('bus change '+value)
+				this.selfContent = value
+			})
+		}
+	}
+
 	export default {
 		name: 'app',
 		components: {
@@ -112,7 +137,8 @@
 			TodoItem,
 			row,
 			CheckProps,
-			NativeClick
+			NativeClick,
+			ChildMsg
 		},
 		data() {
 			return {
