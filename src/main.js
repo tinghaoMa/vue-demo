@@ -2,11 +2,11 @@ import Vue from 'vue/dist/vue.js'
 import App from './App.vue'
 import router from './router'
 import animated from './animate.css' // npm install animate.css --save安装，在引入
- 
+import './assets/styles/reset.css'
 
 Vue.config.productionTip = false
 
-Vue.prototype.bus=new Vue()
+Vue.prototype.bus = new Vue()
 // 使用Animate.css
 Vue.use(animated)
 
@@ -32,27 +32,27 @@ const vm = new Vue({
 	created() {
 		console.log('created');
 	},
-	beforeMount(){
+	beforeMount() {
 		console.log(this.$el);
 		console.log('beforeMount');
 	},
-	mounted(){
+	mounted() {
 		console.log(this.$el);
 		console.log('mounted');
 	},
-	beforeDestroy(){
+	beforeDestroy() {
 		console.log('beforeDestory');
 	},
-	destroyed(){
+	destroyed() {
 		console.log('destroyed');
 	},
-	beforeUpdate(){
+	beforeUpdate() {
 		console.log('beforeUpdate');
 	},
-	updated(){
+	updated() {
 		console.log('updated');
 	}
-	
+
 })
 
-window.vm=vm
+window.vm = vm
