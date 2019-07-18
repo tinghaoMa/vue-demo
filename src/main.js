@@ -1,10 +1,13 @@
 import Vue from 'vue/dist/vue.js'
 import App from './App.vue'
 import router from './router'
+import fastClick from 'fastclick'
 import animated from './animate.css' // npm install animate.css --save安装，在引入
 import './assets/styles/reset.css'
+import './assets/styles/border.css'
 
 Vue.config.productionTip = false
+fastClick.attach(document.body)
 
 Vue.prototype.bus = new Vue()
 // 使用Animate.css
