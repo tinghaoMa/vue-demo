@@ -1,9 +1,13 @@
 import Vue from 'vue/dist/vue.js'
 import App from './App.vue'
+import animated from './animate.css' // npm install animate.css --save安装，在引入
+ 
 
 Vue.config.productionTip = false
 
 Vue.prototype.bus=new Vue()
+// 使用Animate.css
+Vue.use(animated)
 
 // 定义一个名为 button-counter 的新组件
 Vue.component('ButtonCounter', {
