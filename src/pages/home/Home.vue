@@ -18,7 +18,7 @@
 		data: () => {
 			return {
 				name: 'body content',
-				age:0
+				age: 0
 			}
 		},
 		methods: {
@@ -27,10 +27,19 @@
 					const {
 						data
 					} = res
+					console.log('axios 请求');
 					console.log(data);
 					this.name = data.data.name
 					this.age = data.data.age
 				})
+				fetch('http://rap2api.taobao.org/app/mock/94657/getHomeInfo')
+					.then(function(response) {
+						return response.json()
+					}).then(function(myJson) {
+						console.log('fetch 请求');
+						console.log(myJson);
+					});
+
 			}
 		},
 		mounted() {
