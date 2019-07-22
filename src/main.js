@@ -24,6 +24,21 @@ Vue.component('ButtonCounter', {
 	template: '<button v-on:click="count++">You clicked me {{ count }} times.{{content}}</button>'
 })
 
+Vue.component('jsx-example', {
+  render: function (createElement) {
+    return createElement(
+      'div' 	
+    ,['hello world',
+	  this.name
+	])
+  },
+  props: {
+    name: {
+      type: String,
+      required: true
+    }
+  }
+})
 
 const vm = new Vue({
 	el: '#app',
